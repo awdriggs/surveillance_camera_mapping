@@ -1,41 +1,36 @@
-
+import express from 'express';
+import mongoose from 'mongoose';
+import locationRoutes from './routes/locationRoutes.js';
+import homeRoutes from './routes/homeRoutes.js';
+import dotenv from 'dotenv';
 
 // Secrets
-import dotenv from 'dotenv';
 dotenv.config();
 
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 
 // DB Bizness
-import mongoose from 'mongoose';
-import Location from './model/Location.js';
+// import Location from './models/Location.js';
+mongoose.connect(`mongodb+srv://${username}:${password}@undersurveillancedata.6wo4x.mongodb.net/?retryWrites=true&w=majority&appName=underSurveillanceData`)
+  .then(() => console.log('MongoDB connected with Mongoose'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-mongoose.connect(`mongodb+srv://${username}:${password}@undersurveillancedata.6wo4x.mongodb.net/?retryWrites=true&w=majority&appName=underSurveillanceData`);
+const app = express();
+const port = process.env.PORT || 3000;
 
-//Test data for the DB
-// const loc = new Location({
+app.use(express.json()); // Middleware to parse JSON bodies
+app.use(express.static('public')); //Middleware for front-end content
 
-//   type: 'doorbell',
+// Use the location routes
+app.use('/api', locationRoutes);
 
-//   location: {
-//     type: "Point",
-//     coordinates : [4.88776136323474, 52.351874359231466]
-//   },
+// Use the static routes 
+app.use('/', homeRoutes);
 
-//   tags: ['private', 'ring'],
-
-// });
-
-// // Insert the article in our MongoDB database
-
-// await loc.save();
-
-// // Find a single location 
-
-// const locationTest = await Location.findOne({});
-// console.log(locationTest);
-
- 
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port} bro`);
+});
 
 
