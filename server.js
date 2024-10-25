@@ -9,9 +9,10 @@ dotenv.config();
 
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
-
+console.log(username, password);
 // DB Bizness
 // import Location from './models/Location.js';
+// const mongoURI = process.env.MONGO_URI;
 mongoose.connect(`mongodb+srv://${username}:${password}@undersurveillancedata.6wo4x.mongodb.net/?retryWrites=true&w=majority&appName=underSurveillanceData`)
   .then(() => console.log('MongoDB connected with Mongoose'))
   .catch(err => console.error('MongoDB connection error:', err));
