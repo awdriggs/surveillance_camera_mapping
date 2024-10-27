@@ -13,7 +13,8 @@ console.log(username, password);
 // DB Bizness
 // import Location from './models/Location.js';
 // const mongoURI = process.env.MONGO_URI;
-mongoose.connect(`mongodb+srv://${username}:${password}@undersurveillancedata.6wo4x.mongodb.net/?retryWrites=true&w=majority&appName=underSurveillanceData`)
+// mongoose.connect(`mongodb+srv://${username}:${password}@undersurveillancedata.6wo4x.mongodb.net/?retryWrites=true&w=majority&appName=underSurveillanceData`)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected with Mongoose'))
   .catch(err => console.error('MongoDB connection error:', err));
 
