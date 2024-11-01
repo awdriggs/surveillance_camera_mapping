@@ -15,7 +15,7 @@ dotenv.config();
 // const mongoURI = process.env.MONGO_URI;
 // mongoose.connect(`mongodb+srv://${username}:${password}@undersurveillancedata.6wo4x.mongodb.net/?retryWrites=true&w=majority&appName=underSurveillanceData`)
 
-console.log("testing mongo connection");
+console.log("testing connection");
 console.log(process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected with Mongoose'))
