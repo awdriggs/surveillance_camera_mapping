@@ -14,10 +14,12 @@ dotenv.config();
 // import Location from './models/Location.js';
 // const mongoURI = process.env.MONGO_URI;
 // mongoose.connect(`mongodb+srv://${username}:${password}@undersurveillancedata.6wo4x.mongodb.net/?retryWrites=true&w=majority&appName=underSurveillanceData`)
+const mongoURI = process.env.MONGO_URI;
+console.log(mongoURI);
 
 console.log("testing connection");
 console.log(process.env.MONGO_URI);
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected with Mongoose'))
   .catch(err => console.error('MongoDB connection error:', err));
 
